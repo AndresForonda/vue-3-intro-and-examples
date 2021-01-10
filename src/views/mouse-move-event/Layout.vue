@@ -1,14 +1,11 @@
 <template>
   <div
     @mousemove="xCoordinate"
-    class="box"
+    class="flex flex-wrap w-screen h-screen justify-center content-center"
     :style="{ backgroundColor: `hsl(${x},80%, 50%)` }"
   >
-    <div>
-      <h4>Mouse background color changer</h4>
-      <button @click="decrement">-</button>
-      {{ counter }}
-      <button @click="increment">+</button>
+    <div class="font-bold" :style="{ color: `hsl(${x},80%,40%)` }">
+      <h1 class="text-2xl">Mouse background color changer</h1>
       <p>Pixels across: {{ x }}</p>
     </div>
   </div>
@@ -19,25 +16,11 @@ export default {
   name: "MouseMove",
   data: () => ({
     x: 0,
-    counter: 0,
   }),
   methods: {
-    decrement() {
-      this.counter -= 1;
-    },
-    increment() {
-      this.counter += 1;
-    },
     xCoordinate(e) {
       this.x = e.clientX;
     },
   },
 };
 </script>
-
-<style scoped>
-.box {
-  width: 100vw;
-  height: 100vh;
-}
-</style>
