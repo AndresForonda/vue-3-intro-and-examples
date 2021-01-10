@@ -37,8 +37,7 @@ export default {
 
 <style scoped>
 .box {
-  width: 500px;
-  height: 450px;
-  padding-top: 50px;
+  width: 100vw;
+  height: 100vh;
 }
 </style>
