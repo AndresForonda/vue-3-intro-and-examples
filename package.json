@@ -6,6 +6,7 @@
     "build": "vuedx-typecheck . && vite build"
   },
   "dependencies": {
+    "uuid": "^8.3.2",
     "vue": "^3.0.5",
     "vue-router": "^4.0.2"
   },
