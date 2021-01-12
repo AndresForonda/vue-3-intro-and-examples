@@ -2,18 +2,18 @@
   <div class="p-4 divide-y">
     <h2 class="text-2xl">List admin</h2>
     <add-list v-model="listName" @add-list="addList" />
-    <!-- <select-list v-model="selectedListId" :lists="lists" /> -->
+    <select-list v-model="selectedListId" :lists="lists" />
   </div>
 </template>
 
 <script>
 import AddList from "./AddList.vue";
-// import SelectList from "./SelectList.vue";
+import SelectList from "./SelectList.vue";
 export default {
   name: "ListAdmin",
   components: {
     AddList,
-    // SelectList,
+    SelectList,
   },
   props: {
     lists: {
