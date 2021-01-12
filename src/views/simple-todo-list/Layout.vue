@@ -15,15 +15,16 @@ export default {
   data: () => ({
     lists: [],
     selectedListId: "",
-    taskTitle: "",
   }),
   methods: {
     addList(name) {
+      const id = uuidv4();
       this.lists.push({
-        id: uuidv4(),
+        id,
         name,
         tasks: [],
       });
+      this.selectedListId = id;
     },
   },
 };
