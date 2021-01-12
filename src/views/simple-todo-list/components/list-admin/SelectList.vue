@@ -1,7 +1,7 @@
 <template>
   <div class="mt-2 mb-2 pt-2 pb-2">
     <h2>Choose list</h2>
-    <p v-if="!existLists" class="text-gray-400">Add a least one list</p>
+    <p v-if="!existLists" class="text-gray-400">Add at least one list</p>
     <select
       v-else
       v-model="value"
