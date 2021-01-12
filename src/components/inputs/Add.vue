@@ -3,16 +3,17 @@
     <p>{{ title }}</p>
     <div class="flex justify-center">
       <input
-        type="text"
-        v-model="name"
-        @keyup.enter="add"
         :placeholder="inputPlaceholder"
+        :value="name"
+        @input="(e) => (name = e.target.value)"
+        @keyup.enter="add"
         class="border border-transparent bg-gray-100 border-green-100 rounded-sm focus:outline-none focus:border-green-500 focus:bg-white"
+        type="text"
       />
       <button
         class="flex px-2 py-1 text-sm bg-green-400 rounded-sm text-white focus:outline-none disabled:opacity-50 disabled:cursor-default"
-        :class="{ 'hover:bg-green-500': listNameExist }"
-        :disabled="!listNameExist"
+        :class="{ 'hover:bg-green-500': !nameIsEmpty }"
+        :disabled="nameIsEmpty"
         @click="add"
       >
         {{ buttonLabel }}
@@ -48,16 +49,17 @@ export default {
         return this.modelValue;
       },
       set(value) {
+        console.log("ahy");
         this.$emit("update:modelValue", value);
       },
     },
-    listNameExist() {
-      return !!this.name;
+    nameIsEmpty() {
+      return this.name.length === 0;
     },
   },
   methods: {
     add() {
-      if (this.listNameExist) {
+      if (!this.nameIsEmpty) {
         this.$emit("add");
       }
     },
