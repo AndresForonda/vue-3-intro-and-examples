@@ -1,12 +1,15 @@
 <template>
-  <div class="flex flex-col p-4 w-screen h-screen">
-    <list-admin @add-list="addList" v-model="selectedListId" :lists="lists" />
-    <tasks-list
-      :list="list"
-      v-model="task"
-      @add-task="addTask"
-      @update-task-status="updateTaskStatus"
-    />
+  <div class="w-screen h-screen flex justify-center">
+    <div class="flex flex-col p-4 w-96">
+      <list-admin @add-list="addList" v-model="selectedListId" :lists="lists" />
+      <tasks-list
+        :list="list"
+        v-model="task"
+        @add-task="addTask"
+        @update-task-status="updateTaskStatus"
+        @delete-task="deleteTask"
+      />
+    </div>
   </div>
 </template>
 
@@ -14,11 +17,6 @@
 import { v4 as uuidv4 } from "uuid";
 import ListAdmin from "./components/list-admin/Layout.vue";
 import TasksList from "./components/tasks-list/Layout.vue";
-const STATUS = {
-  DONE: "DONE",
-  PROGRESS: "PROGRESS",
-  TODO: "TODO",
-};
 export default {
   name: "SimpleTodoList",
   components: {
@@ -50,13 +48,17 @@ export default {
       const list = this.list;
       list.tasks.push({
         id,
-        status: STATUS.TODO,
+        done: false,
         name: this.task,
       });
       this.task = "";
     },
-    updateTaskStatus({ id, status }) {
-      this.list.tasks[id].status = status;
+    deleteTask(id) {
+      const list = this.lists.find((list) => list.id === this.selectedListId);
+      list.tasks = list.tasks.filter((task) => task.id !== id);
+    },
+    updateTaskStatus({ task, done }) {
+      task.done = done;
     },
   },
 };

@@ -1,17 +1,20 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "../views/home/Layout.vue";
-import MouseMoveEvent from "../views/mouse-move-event/Layout.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../views/home/Layout.vue"),
   },
   {
     path: "/mouse-move-event",
     name: "MouseMoveEvent",
-    component: MouseMoveEvent,
+    component: () => import("../views/mouse-move-event/Layout.vue"),
+  },
+  {
+    path: "/simple-todo-list",
+    name: "SimpleTodoList",
+    component: () => import("../views/simple-todo-list/Layout.vue"),
   },
 ];
 
