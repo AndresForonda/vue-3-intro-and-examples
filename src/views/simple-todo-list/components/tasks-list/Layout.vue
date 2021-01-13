@@ -10,10 +10,14 @@
         title="Add new list"
         v-model="task"
       />
-      <div class="divide-y">
-        <p v-for="task in list.tasks" :key="task.id">
-          {{ task.name }}
-        </p>
+      <div>
+        <Task
+          v-for="t in list.tasks"
+          :key="t.id"
+          :task="t"
+          @update-task-status="updateTaskStatus"
+          @delete-task="deleteTask"
+        />
       </div>
     </div>
   </div>
@@ -21,10 +25,12 @@
 
 <script>
 import AddTask from "@/components/inputs/Add.vue";
+import Task from "./Task.vue";
 export default {
   name: "TasksList",
   components: {
     AddTask,
+    Task,
   },
   props: {
     list: {
@@ -54,6 +60,13 @@ export default {
       if (!this.taskIsEmpty) {
         this.$emit("add-task");
       }
+    },
+    deleteTask(e) {
+      console.log(e);
+      this.$emit("delete-task", e);
+    },
+    updateTaskStatus(e) {
+      this.$emit("update-task-status", e);
     },
   },
 };
