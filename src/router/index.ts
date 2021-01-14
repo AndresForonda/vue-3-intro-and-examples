@@ -16,6 +16,11 @@ const routes = [
     name: "SimpleTodoList",
     component: () => import("../views/simple-todo-list/Layout.vue"),
   },
+  {
+    path: "/infinite-scroll",
+    name: "infiniteScroll",
+    component: () => import("../views/infinite-scroll/Layout.vue"),
+  },
 ];
 
 const router = createRouter({
