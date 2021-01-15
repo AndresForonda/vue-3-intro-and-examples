@@ -1,6 +1,7 @@
 <template>
   <div class="p-4 divide-y border rounded-md mb-2">
     <h2 class="text-2xl pt-2 pb-2">List admin</h2>
+    <router-link to="/" class="italic">Go To Home</router-link>
     <add-list
       @add="addList"
       buttonLabel="Add list"
